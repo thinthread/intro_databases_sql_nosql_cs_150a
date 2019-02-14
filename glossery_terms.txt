@@ -1,0 +1,304 @@
+Glossery - Terms
+
+A:
+    Attributes:
+        - Are the pieces of data we store
+            ex:
+                - animal name
+                - animal tyoe
+                - animal dob
+                - animal owerner(client)
+                - exam date for animal
+                - exam details for animal 
+
+B:
+    Business Entities and Database Components:
+        -ex of entitiy types:
+            -student, customers, book in a library, ect
+
+
+
+C:
+    Clauses:
+        Clause is - a subcomponent of a statement
+
+        Clause Types:
+            FROM  - identify the table that supplies the data
+            SELECT - identify the columns to be returned
+
+    Client:
+        - To communicate with the database engine you need a program to enter the SQL 
+           statement and see the results - this is called the CLIENT program
+
+        - The client lets us enter SQL statments adb see the results
+        - The client lets us build database objects sycha s tables
+        - Can also run SCRIPTS via the CLIENT
+
+        - NOTE:
+            - SQL statemnets are not the apropriate way for most end-users get data from a DB
+            - Best to provide specialized interface - like an app wiht menues, text boxes and buttons
+
+
+    Client/Server:
+        - A client/server has two types of software, taht can be installed on the same physical computer or on a different computer via a that is linked via a network.
+            
+            - Software types:
+                - Server Software , also known as - DATABASE engine 
+                - Client Software
+
+    Concurrency Control:
+        - Multiple users handling/accessing data from a DB at the same time
+        - DBMS handles multiple entries at the same time, but how thr developer writes code can
+        affect the situation
+
+
+D:
+
+    DBMS:
+        - Database Management System
+
+        - Is a collection of programs that manage the database 
+
+        - DBMS is responsible for protecting -
+            - integrity of the data
+            - optimizing querries
+        
+        - How is generally works
+            - when we issue a SQL select SELECT statment we enter it in a client program which
+            which sends the SQL statment to a traslator progrom which changes our text into a
+            query that can be processed.
+
+            - then another part of the DBMS takes thea quest and gets that data from
+            the physical data storage
+
+            - Then the DBMS sends the data back to the client program which may need to do
+            some additional steps to format it for display
+
+    Data: 
+        - Values that have meeaning to us for some purpose.
+
+        - Making data useful means you have to store it in a way that you can retrive it efficiently, 
+        like in a DATABASE
+
+        - ex: 
+            Student Name, Sudemt ID, Date of Birth (DOB), Number of units in a class
+
+        - Kinds of data values:
+
+    Database:
+        - A colleciton of data that can be used for more than one purpose.
+
+        - Databases organize DATA through a colloection of TABLES (see TABLES def for more info).
+
+        - ex:
+            CCSF student database is used for:
+                Registration, prodction of transcipts, billing students and sending reports to the state for funding.
+
+        - General biology of a Database:
+
+            - Table(s) structur:
+                - Heder - The top row that is shaded
+                - Identifier - Each tag/title in the HEADER 
+                - Columns - Contain same DATA type
+                - Rows - Contain related DATA type
+
+            - Schema - Table themes and relationships
+
+        - Kinds of databases:
+            - Relational Database
+            - RDBMS - Relaitonal Database Management System
+
+    Database Design:
+        - Early steps in design
+            - Entities that are important to our company
+            - Attributes we need to save for these entities
+            - What tyoe of data the atributes store
+            - Howtype of data values for one entity are related to other entities
+            - What rules we have about data
+
+
+    Database Security and Recovery:
+        - This topic is more DBA oriented
+        - DBMS will include features to do backups of data while the system si running
+        and to help with recovery fo the data
+            - MUST BE A LOSSLESS RECOVERY - not a backup from the last day of the previous month
+
+    Database server/engine:
+        - This is the set of programs in the RDBMS that work directly with the DATA.
+        - When you run a query you are actually passing the queru to the DATABASE SERVER.
+        - In many systems the terms SERVER and ENGINE mean the same thing
+
+        - NOTE:
+            - In class we are using an Oracle 12g DATABASE SERVER.
+
+
+            Numeric, Dates, Text
+
+    DATA INTEGRITY:
+        - DBMS is responsible for protecting the integrity of the data
+            - This has several aspects
+                - values and atributes that are submited/entered into a field have to match
+                the required contraints of that field.
+                    ex: 
+                        - date feild must be given a value of a numeric date
+                        - charicter limitiations
+
+                    ex aproach to DATA INTEGRITY: 
+                        - reject the value another is to store only first 15 characters of that value
+
+E:
+    EMBEDED SQL - Refers to SQL statements might be included inside of other units of code
+
+    Entity Instance;
+        - An individual row of data in a table
+
+    Entity Set:
+        - Is the collection of all the rows in a current table 
+
+
+
+I:
+    Identifier:
+        - Each tag/title in the HEADER
+
+K:
+    Key Words/ Clauses:
+        FIRST - ???
+
+        FROM -
+
+        NULL -
+
+        ORDERED BY -
+
+        SELECT - 
+
+        WITH - 
+
+L:
+    Logical Data Independence:
+        - The ability of the DBMS to access data even if the organizaiton of the inderlying
+        data is altered
+            ex:
+                - a table should work nomater the order of the columns or new columns added
+
+    Lossless - Recovery:
+
+
+
+
+P:
+    Persistent Storage:
+
+    Physical Data Independence:
+        - This means that a DBMS does not concern itself with the physical storage type (ex: hard drive, ect) or the location ( this is the realm of the DBA (database administator)) or
+        the general configuration of storage setup ( which is set up in aparticular fassion for 
+        efficency sake)
+            - The SQL query methods do not logically depend on the physical ordering of a
+            hardrive(s).
+            -If the physical order of the data in persistent storage is changed, the SQL application does not need to be changed.
+            - if a developer wants to store a data value, they do not need to worry about
+            storage of that data value with regard to bit patterns.
+            -NOTE:
+                - Developers often have to know somthing about the storage of data to write the
+                most effivent questies and to decide on the proper data types to use
+
+    Primary Key:
+        - An atribute or collection of atributes that uniquely identify a particular instance in
+        a table
+
+        - Note:
+            - A PRIMARY KEY helps to distinguish the individual row in a table
+            - Primary keys value(s) are unique per table
+            - Are NOT NULL
+
+            - TRADITIONAL NORMALIZATION RULES:
+
+                - PK's usually store a single simple scalar value
+                - That all atributes in a row should be determined by the PK of that ENTITY INSTANCE
+                - ( More tom come later in the semester on this)
+
+
+
+Q:
+    Query:
+        - A question that you ask about the data
+        - ex:
+            - "For which classes is the student with ID w00000009 registered?"
+            - or "Show me how many students wehace registered for classes this semester who do not live in CA."
+
+    QUERY OPTIMIZATION:
+        - DBMS translator program rewrites our query in such a way to make it more efficent
+        without changing the logic of the request.
+            - DBMS generates a plan of execution, how it will getthe data from the tables
+
+R:
+    Relational Database:
+        - A relational database stores DATA ub structures called RELATIONS which can be represented by two-demntional TABLES.
+
+    Relation:
+        - A relation is a mathematical concept - but we can think of it as a table.
+
+    Relationships:
+        - Means that we split data into several tables for storage efficiency purposes
+        and create links between these tables in order to connect all relitive data for an
+        "enrtry".
+
+    RDMS - Relational Database Management System:
+        - Is a collection of prorams that handle the physical files that make up the DATABASE. 
+        - ex:
+            - When we create a TABLE, add ROWS of DATA to that TABLE or look at the DATA in that TABLE we issue a cimmand that is transfered to one or more of the programs RDBMS which does the actual reading and writing to the DATABASE.
+
+
+S:
+    Set-based operations and closure:
+        - These are basic concepts of a reational system.
+        - When working with DB using SQL language our commands are applied to the entire table as
+            - tables contain rows
+                - a query works on all rows at the same time
+
+    Schema:
+        - Table themes and relationships
+        - A collection of tables that one may have for a particular purpose.
+            - ex:
+                - In a company we might have a schema for our customer data and another schema  
+                for products that we sell.
+
+        - NOTE:
+            - In some database systems SCHEMA and DATABASE mean the same thing
+            - In other database systems SCHEMA is a subcategiry if a DATABASE
+
+    SQL:
+        Structured Query Language
+
+        SQL (pronounced "ess-que-el") stands for Structured Query Language. SQL is used to communicate with a database. According to ANSI (American National Standards Institute), it is the standard language for relational database management systems.
+
+    Syntax parts:
+        Caluse - 'FROM clause' - Note - there are different types of clauses
+            ex: FROM zoo_20016
+
+        Statement - 
+            ex: SELECT * FROM zoo_2016
+
+
+T:
+    Table:
+        - DATA in a DATABASE is stored and organized in containers caleld Tables.
+
+        - Related DATA gets stored in a sigle table and there may be many tables
+
+        - How it looks:
+            A table consists of a set of rows. Top shaded row - HEADER
+
+            A table consists of columns. They cantain related DATA of the same kind
+                ex:
+                    Student_ID | LastName | FirstName
+                    w000000_33 | Boyette  | Liot
+                    w230000-31 | Mitchell | Siarah
+
+        - Anatomy of a TBALE:
+            - Primary Key
+            - Might be a - Base Table
+            - Entity Set
+            - Entity Instance
+
