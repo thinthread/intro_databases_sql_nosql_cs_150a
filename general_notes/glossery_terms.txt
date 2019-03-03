@@ -1,28 +1,40 @@
-Glossery - Terms
+Glossary - Terms
 
 A:
     Attributes:
-        - Are the pieces of data we store
-            ex:
-                - animal name
-                - animal tyoe
-                - animal dob
-                - animal owerner(client)
-                - exam date for animal
-                - exam details for animal 
+        - An ATRIBUTE is a characteristic(DATA) of an enity stored in a TABLE
+
+        - An ATRIBUTE is represented as a COLUMN in a TABLE, these ATRIBUTES/VALUES have
+        limitations on them placed by the developer
+            - ex:
+                - animal_id   --- this may be defined as an integer type value 
+                    - so we can use 1567 but not 14.76 nor 'SECT'
+
+                - animal_name
+                - animal_tyoe
+                - animal_dob
+                - animal_owerner  (client)
+                - exam_date_for_animal
+                - exam_details_for_animal 
 
 B:
     Business Entities and Database Components:
         -ex of entitiy types:
             -student, customers, book in a library, ect
 
+    Base Table:
+        - The term BASE TABLE refers to a table that is defined with the  CREATE TABLE statement
+
 
 
 C:
-    Clauses:
-        Clause is - a subcomponent of a statement
+    Char():
+        - Fixed length - This means that char() field always takes the same amount of space regardless of what you store
 
-        Clause Types:
+    Clauses:
+        - Clause is - a subcomponent of a statement
+
+        - Clause Types:
             FROM  - identify the table that supplies the data
             SELECT - identify the columns to be returned
 
@@ -45,6 +57,20 @@ C:
             - Software types:
                 - Server Software , also known as - DATABASE engine 
                 - Client Software
+
+    Constraints:
+        - Contraints create INTEGRITY in your DB
+            - Three types of INTEGRITY:
+                - ENTITY INTEGRETY
+                    - Each row should be uniquely identifiable - enforced by PK constraints
+                
+                - REFERENCIAL INTEGRITY
+                    - Arow in a child table need to be related toa row in a parent table -
+                    enforced by the FK contraints
+                
+                - DOMAIN INTEGRITY
+                    - A data value meets certain criteria - in its simplest form, this is enforced by the data type; this can be more clodly defined by
+                    a check contraint                
 
     Concurrency Control:
         - Multiple users handling/accessing data from a DB at the same time
@@ -97,7 +123,7 @@ D:
         - General biology of a Database:
 
             - Table(s) structur:
-                - Heder - The top row that is shaded
+                - Header - The top row that is shaded
                 - Identifier - Each tag/title in the HEADER 
                 - Columns - Contain same DATA type
                 - Rows - Contain related DATA type
@@ -107,6 +133,8 @@ D:
         - Kinds of databases:
             - Relational Database
             - RDBMS - Relaitonal Database Management System
+
+    Data Definition Language (DDL)
 
     Database Design:
         - Early steps in design
@@ -155,6 +183,10 @@ E:
     Entity Set:
         - Is the collection of all the rows in a current table 
 
+H:
+    Header:
+
+
 
 
 I:
@@ -163,6 +195,8 @@ I:
 
 K:
     Key Words/ Clauses:
+        AS " "-
+
         FIRST - ???
 
         FROM -
@@ -174,6 +208,29 @@ K:
         SELECT - 
 
         WITH - 
+
+        DISTINCT -
+
+
+    Keys:
+        - Three types of keys
+            - CANDIDATE KEY  
+                - is an attribute or a colleciton of atributes which is never null
+                and is always unique with in a table
+
+                - A PK can be one of the unique atributes in a CANDIDATE KEY or the only
+                unique atribute in the CANDIDATE KEY 
+            
+            - PRIMARY KEY PK 
+                - is the identifier key of an ENTITY INSTANCE & is the PK is defined when we create a table ?????????????
+
+                - There can only be one PK
+            - FOREIGN KEY FK 
+                - are defined with respect to two tables and can be nullable
+
+
+            - NOTE:
+                - A PRIMARY KEY in one TABLE is the FOREIGN KEY in another TABLE
 
 L:
     Logical Data Independence:
@@ -234,14 +291,29 @@ Q:
 
 R:
     Relational Database:
-        - A relational database stores DATA ub structures called RELATIONS which can be represented by two-demntional TABLES.
+        - A relational database stores DATA as structures called RELATIONS which can be represented by two-demntional TABLES consisting of a series of ROWS and COLUMNS.
+
+        - Has been used for more that 40 years
+
+        - Developed by Dr Codd in 1960's 
+
+        - RELATIONAL DATABASE model is the underlying model for the majority fo the database
+        systems in use
 
     Relation:
-        - A relation is a mathematical concept - but we can think of it as a table.
+        - A relation is a mathematical concept - but we can think of it as tables.
+
+        - It stores a set of values that are related to some entity
+
+        - The DATA from one TABLE will usually be associated with DATA in other TABlES in
+        the DATABASE... This association between TABLES is called a REALATIONSHIP
+
 
     Relationships:
-        - Means that we split data into several tables for storage efficiency purposes
-        and create links between these tables in order to connect all relitive data for an
+        - Is the association of DATA between two or more TABLES containing related DATA 
+
+        - THis means that we split data into several tables for storage efficiency purposes
+        and create links between these tables in order to connect all relitive DATA for an
         "enrtry".
 
     RDMS - Relational Database Management System:
@@ -298,7 +370,22 @@ T:
 
         - Anatomy of a TBALE:
             - Primary Key
-            - Might be a - Base Table
             - Entity Set
             - Entity Instance
+            - Atributes
+            - Header - The top row that is shaded
+            - Identifier - Each tag/title in the HEADER 
+            - Columns - Contain same DATA type
+            - Rows - Contain related DATA type
+
+            - Note:
+                - Might be a - Base Table
+                - Might be a - Virtual Table
+
+V:
+    Varchar():
+        - Values in varchar() are variable-length strings. The lenth can be specified as a value from 0-65,535. The effective maximum length of a varchar() is subject to the maximum ro size (65,535 bytes, which is shared among all columns) and the character set used.  
+
+    Virtual Table:
+        - Refers to an IN- MEMORY data structure that appears to hold the data
 

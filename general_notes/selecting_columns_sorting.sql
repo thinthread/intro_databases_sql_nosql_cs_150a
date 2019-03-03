@@ -1,8 +1,9 @@
-/* Selecting Columns  and Sorting */
+/* Selecting Columns and Sorting */
 
+----------------------------------------------------------------------------------------------       
+
+-- Selecting Columns 
 /* 
-Selecting Columns 
-
 Clause FROM  - identify the table that supplies the data
 Clause SELECT - identify the columns to be returned
 
@@ -13,14 +14,19 @@ NOTE:
 /* You can display columns in any order, cells with null values will display as empty*/
 SELECT z_type, z_name FROM zoo_2016;
 
+----------------------------------------------------------------------------------------------
+
+-- DISPLAY DATES AND NUMERIC VALUES
+
 /* Display dates and numeric values - The default displays for dates uses a format with 
 a two digit day and threee letter month and a two digit year. */
 SELECT z_dob, z_cost, z_name FROM zoo_2016;
 
 
-/*
-Selecting ALL columns
+---------------------------------------------------------------------------------------------
 
+-- SELECTING ALL COLUMNS
+/*
 Symbol * - indicates all columns and rows
 
 NOTE:
@@ -33,8 +39,11 @@ NOTE:
 
 SELECT * FROM zoo_2016;
 
+-----------------------------------------------------------------------------------------------
+
+-- Columns Aliases
+
 /*
-Columns Aliases
     Default - HEADERS are the columns atribute names displayed in uppercase letter at the top of a column(s)
 
     Column Aliases are limited to 30 character, are upper case
@@ -61,8 +70,8 @@ SELECT
 ,   z_name AS "Name"
 FROM zoo_2016;
 
-
--- Sorting the output display
+-----------------------------------------------------------------------------------------------
+-- Sorting the output display, ACCENDING AND DECENDING ORDER
 
 /* Clause ORDERED BY - to order/control which rows are displayed 
         Can order by:
@@ -80,7 +89,7 @@ FROM zoo_2016;
 
 */
 
--- ascending order
+-- ASCENDING ORDER
 SELECT 
     z_id 
 ,   z_dob AS "Date of birth"
@@ -90,7 +99,7 @@ FROM zoo_2016
 ORDERED BY z_cost; /* note - returns values in ascending order, smallest to bigest */
 
 
--- decending order
+-- DESCENDING ORDER
 SELECT 
     z_id 
 ,   z_dob AS "Date of birth"
@@ -100,7 +109,10 @@ FROM zoo_2016
 ORDERED BY z_cost DESC; /* note - returns values in ascending order, bigest to smallest */
 
 
--- Two level sort 
+-----------------------------------------------------------------------------------------------
+
+-- TWO LEVEL SORT
+
 /* The first sort is the key - the second sort only exicutes if two or more values from the first 
 sort have the same value. 
     Note: 
@@ -126,11 +138,14 @@ SELECT
 FROM zoo_2016
 ORDER BY z_type, z_cost DESC;
 
+-----------------------------------------------------------------------------------------------
 
--- NULL values in sorting
-/* Nulls sort as a high-valued data item */
 
-/* Ascending order
+-- NULL VALUES IN SORTING
+
+/* Nulls sort as a high-valued data item - SMALLEST VALUE TO LARGEST VALUE */
+
+/* ASCENDING ORDER, NULLS LAST AS HIGH-VALUED DATA (SMALLEST VALUE TO LARGEST VALUE)
 
 ex:
     Armadillo           Abigail
@@ -162,9 +177,10 @@ SELECT
 FROM zoo_2016
 ORDER BY z_name;
 
+-----------------------
 
-/* NULLS FIRST sort in ascending order
-ex:
+-- NULLS FIRST, THEN SORT IN ASCENDING ORDER 
+/* ex:
 
     Lion
     Lion
@@ -186,8 +202,11 @@ SELECT
 FROM zoo_2016
 ORDER BY z_name NULLS FIRST;
 
-/*  DESC NULLS FIRST 
-ex:
+---------------------------------------------------------------------------------------
+
+-- DESCENDING SORT, NULLS FIRST 
+
+/*  ex:
 
 Giraffe
 Lion
@@ -212,13 +231,23 @@ Armadillo   Abigail
 
 */
 
+SELECT
+    z_type AS "Type"
+,   z_name AS "Name"
+FROM zoo_2016
+ORDER BY z_name DESC NULLS FIRST; 
 
--- Sort by date
+
+
+-------------------------------------------------------------------------------------
+
+-- SORT BY DATE VALUE
 
 /* Sort by date DESC */
+
 Select
- z_id
-, z_dob as "BirthDate"
+  z_id
+, z_dob as "Birth Date"
 , z_name as "Name"
 From zoo_2016
 ORDER BY z_dob DESC;
@@ -236,13 +265,13 @@ ORDER BY z_dob DESC;
 
 */
 
-
-/* Sort by alias 
+---------------------------- 
+/* Sort by COLUMN ALIASES  -  LIKE A DATE VALUE ALIAS
     - Oracle allows you to sort by an alias. But if this is a quoted alias, 
     then the sort key must also be a quoted alias */
 
 Select
- z_id
+  z_id
 , z_dob as "Date of Birth"
 , z_name as "Name"
 From zoo_2016
@@ -275,6 +304,9 @@ ex:
 
 */
 
+-------------------------------------------------------------------------------------
+
+-- SORT BY COLUMN NUMBER
 
 -- Sort by Column Number
 /* Oracle allows you to sort by number
@@ -282,7 +314,7 @@ ex:
         -This is generally considered poor style since it is easyt o 
         rearange the column in the select and forget to adjust the ORDER BY clause
 
-        - You want o write SQK that is easier to correctly and harder to write incorectly
+        - You want o write SQL that is easier to correctly and harder to write incorectly
 
 */
 
@@ -321,3 +353,84 @@ ex:
 
 */
 
+-----------------------------------------------------------------------------------
+
+--  SORT BY CALCULATED COLUMNS 
+/*
+    Note:
+        You can sort by calculated columns by using the alias or 
+        repeating the calculation as the sort key
+*/
+
+
+select
+  z_id
+, extract ( month from z_dob ) as "Birth Month"
+, z_dob
+, z_name as "Name"
+from zoo_2016
+order by extract ( month from z_dob ) ;
+
+/* sort by calculated columns
+ex:
+     Z_ID    Birth Month   Z_DOB      Name
+----------  ------------- ------------- ----------------
+    45          1           02-JAN-13       Louie
+    25          1           15-JAN-13       Abigail
+    371         1           15-JAN-13       Anne
+    370         1           15-JAN-13       Anders
+    47          1           10-JAN-15
+    56          2           25-FEB-10       Leon
+    374         2           25-FEB-13
+    375         2           25-FEB-13
+    373         2           25-FEB-13
+    372         2           25-FEB-13       Leon
+    57          3           25-MAR-14       Lenora
+    258         5           15-MAY-13
+    259         5           15-MAY-02
+    260         5           15-MAY-02       Geoff
+    23          5           15-MAY-14       Sam
+    85          5           15-MAY-14       Sally Robinson
+    257         5           15-MAY-14       Arnold
+    52          6           06-JUN-13       Dewey
+    43          6           02-JUN-13       Huey
+    44          6           02-JUN-14       Dewey
+
+*/
+
+----------------------------------------------------------------
+
+-- SELECT DISTINCT ELEMENT 
+
+/* SELECT DISTINCT COLUMN - choose values that are not duplicates*/
+
+SELECT DISTINCT z_name FROM zoo_test_2019;
+
+/*
+z_name
+---------
+
+Sam
+Sally
+Louie
+Leon
+Lenora
+Huey
+Dewey
+Abigail
+NULL
+
+*/
+
+--------------
+
+-- SELECT DISTINCT IN A BUILTIN FUNCTION'
+
+SELECT count( DISTINCT z_name )
+from zoo_test_2019;
+
+/* 
+COUNCT(DISTINCT z_name)
+-----------------------
+8
+*/
