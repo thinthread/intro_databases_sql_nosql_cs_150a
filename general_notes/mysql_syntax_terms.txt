@@ -1,0 +1,548 @@
+A:
+
+B:
+    BETWEEN & NOT BETWEEN
+        - KIND:
+            clause, inclusive-BOOLEAN-test filter,  
+
+        - Use to test data against a range of values
+
+        - Range values, inclusive of both start and stop end points
+        - NUMBERS - Start with min to max numbers, no descending searches
+        - NUMBERS DESC - Max to min will run, but nothing returns
+        - STRING LETTERS(CHARS) 
+
+        - How to use:
+            BETWEEN   (numbers)
+                WHERE salary BETWEEN 65000 AND 70000
+                ORDER BY salary
+
+            NOT BETWEEN (numbers)
+                WHERE salary NOT BETWEEN 10000 AND 65000
+                ORDER BY salary;
+
+            BETWEEN (string letters(chars))
+                WHERE name_last 'J' AND 'T'
+                ORDER BY name_last;
+
+                - NOTE:
+                    This will only return last_names with single letter, and is case and space sensative.
+
+                    This will not return names starting with a chosen letter in a range of letters
+
+                    Most DBMS can be case specific and will fail by not returning the desired query
+C:
+    CHAR()
+        - Fixed length - This means that char() field always takes the same amount of space regardless of what you store
+
+    CHECK()
+        - KIND:
+            constraint - entity entegrity
+
+        - Is used to specify a predicate that every tuple must satisfy in a given relation
+        - It limits the clues that a column can hold
+        - The predicate in a CHECK() constraint
+        - CONSTRAINTS are placed in the CREATE TABLE table_name(); command
+
+    COMMIT()
+        - KIND:
+            statement
+
+        - Note:
+            - The script with the inserts ends with a commit statement
+            - In Oracle we use this atatment at the end of the set of INSERTS to tell the Oracle DBMS to save these new rows in persistent form
+
+    CONSTRAINT
+        -
+
+    Comparison Operators
+        - KIND:
+            clause, conditional, test filter equality 
+
+        - List of operators/conditionals:
+            =       (equal)
+            !=      (not equal)
+            >       (greater than)
+            >=      (greater than or equal to)
+            <       (less than)
+            <=      (less than or equal to)
+            <>      ( IN condition/operator, allows you 
+                    to easily test if an expression matches any 
+                    value in a list of values.
+
+                    It is used ot help reduce the need for multiple OR conditions ub a SELECT, INSERT, UPDATE or DELETE statement)  
+
+    CREATE TABLE()
+        - KIND:
+            statment, command
+
+
+D:
+    DECIMAL()
+        -
+
+    DELETE
+        - KIND:
+            statement
+
+        - Note:
+            - DELETE statements happens in the oposite order of the INSERT
+            - You can not delete a partent row before it's child row
+
+    DESC 
+        - KIND:
+            keyword
+
+        - Descending order
+
+        - ex:
+            ORDER BY sort_keys DESC;
+
+    DROP TABLE
+        - KIND: 
+            query
+        - syntax
+            DROP TABLE table_name;
+
+        - Drop table query allows you to remove a table and all its data
+
+        - Note:
+            DBMS 
+                - does not ask if you are sure you want to drop the table and all its data
+                - It will give you an error message if you tryt o drop a table that doesn't exist
+
+
+E:
+
+F:
+    FOREIGN KEY
+
+    FROM
+        - KIND:
+            clause
+
+    FILTERS
+        - IN , NOT IN (tests) 
+            *see section description for info
+
+        - NULL , NOT NULL (tests) 
+            *see section description for info
+
+        - BETWEEN(for a range of values)(test) 
+            *see section description for info
+
+        - COMPARISON OPERATORS (test) 
+            *see section description for info
+
+G:
+
+H:
+
+I:
+    IN() & NOT IN()
+        - KIND:
+            test filter, operator, is part of predicate of WHERE clause
+
+        - Checks for membership
+            - string litterals values get '', spaces matter
+            - ints litterals DO NOT get '', and no special chars
+
+        - How to use
+            - WHERE cust_name_last IN('Morise', 'Morris', 'Morse');
+
+                - Ex return query results:
+
+                CUST_ID cust_NAME_LAST    cust_NAME_FIRST
+                ------- -------------     ---------------
+                 401250 Morse                     Samuel
+                 402100 Morise                    William
+                 404950 Morris                    William
+                 409010 Morris                    William
+                 408777 Morise                    Morris
+        
+            - WHERE max_salary NOT IN(120000);
+
+            - NOTE:
+                - Neither the IN test nor the NOT IN test return the rows where the max_salary is null. For that you need to test with the IS NULL test.
+
+                - Customer first or last name check
+                    select * 
+                    from cust_customers
+                    where 'Morise' in ( customer_name_first, customer_name_last);
+                    
+                    cust_ID cust_NAME_L cust_NAME_F CREDIT_LIMIT
+                    ------- ----------- ----------- ------------
+                    402100 Morise       William     7
+                    408777 Morise       Morris      75
+
+            - NOTE AVOID:
+                select job_id, job_title, max_salary
+                from emp_jobs 
+                where 120000 IN (max_salary);
+
+                - This syntax is not obvious in meaning as testing a column against a list of values... This is poor style
+
+
+    INSERT
+        -KIND:
+            statement
+        - NOTE:
+            - If two or more tables are related to eachother then INSERTING must be done in a specific order - so, tables containing FOREIGN KEYS should be entered after the table containing the FOREIGN KEY as a PRIMARY KEY
+
+J:
+    JOINS, INNER JOINS
+        - KIND:
+
+        - We often talk about joining tables, but it sometimes makes more sense to think about navigating from one table to another to collect all of the data we need. 
+
+        -JOINS state the relationship between a parent and child table, if you want to see related informaiton between those two tables at the same time. Even if the one has an establish relationship via PKs and FKs you need a join to see info for two tables at the same time
+                    
+                    - NOTE:
+                        We can use PK and FK feilds,
+                        but don't have to for a join
+
+
+
+K:
+
+L:
+    LIKE & NOT LIKE
+        - KIND:
+            filter wildcard, operator
+
+        - The wildcard patterns used are:
+            % for zero or more characters, matching any character 
+            _ for a single character, matching any character
+
+        - How to use:
+            where job_title NOT LIKE '%Sales%'
+
+        - The wildcard patterns used are:
+            % for zero or more characters, matching any character 
+            _ for a single character, matching any character
+
+        - Note:
+            Only use LIKE and NOT LIKE for WILDCARD searches as they are expsensive
+
+            - DO NOT USE LIKE FOR EXACT MATCHES
+
+            - find string chars at beinging with chars following
+                From z_wildcards
+                Where cust_phone LIKE '415%';
+
+            - find string chars in the middle with chars before and after
+                From z_wildcards
+                Where cust_phone LIKE '%-239-%'
+
+            - Text strings can be harder to match. We want to locate customers with an address on High – and we don't care if it is a street, road, etc. If we try this approach, we also get the Cust 5.
+
+                From z_wildcards
+                Where cust_address LIKE '%High%';
+                
+                CUST_ID    CUST_ADDRESS
+                -------    ------------------------------
+                    3                 124 High
+                    4                 15 High Road
+                    5                 1554 Rural Highway 12
+
+            - Adding spaces we may miss some things -  no spaces
+
+                Select cust_id, cust_address
+                From z_wildcards
+                Where cust_address LIKE '%High %';
+
+                CUST_ID CUST_ADDRESS
+                ------- ----------------------
+                    4              15 High Road
+
+
+
+    Logical Expression:
+        - Can be found in a CLAUSE and contains a predicate, condition or test
+
+        ex:
+            SELECT col_expressions
+            FROM table_expression
+            WHERE predicate
+            ORDER BY sort_keys;
+
+    Logical Operators
+        - KIND:
+            compound conditions, logical operator, subcomponent to a clause, tests
+
+        - List of operators
+            AND, OR & NOT
+
+        - Hierarchy of evaluation:
+            - If you write a criterion that includes more than one logical operator, you need to be concerned about the hierarchy of evaluation.
+
+                envaluaiton order:
+                    first NOT
+                    then ANDs
+                    than ORs
+
+                    - note:
+                        Parentheses are used ot change the order of operation
+
+                        WHERE (catg_id = 'SPG' OR catg_id = 'PET')
+                        AND prod_list_price < 100;
+
+                        PROD_ID    PROD_LIST_PRICE CATG_I
+                        ---------- --------------- ------
+                              1020           12.95 SPG
+                              1030           29.95 SPG
+                              1140           14.99 PET
+                              1141           99.99 PET
+                              1142             2.5 PET
+                              1143             2.5 PET
+                              1150            4.99 PET
+                              1151           14.99 PET
+                              1152              55 PET
+                              4576           29.95 PET
+                              4577           29.95 PET
+
+                        - NOTE:
+                            Better to use IN() avoiding issues with AND/OR
+
+                            WHERE catg_id IN ( 'SPG', 'PET')
+                            AND prod_list_price < 100;
+
+    LOGICAL VALUES
+        - KIND:
+            value type
+
+        - list of LOGICAL VALUES:
+            TRUE, FALSE UNKNOWN
+
+        -Three way logic and truth table:
+            - NOT operator
+                - if I do not know the value of an expression is True or False then I do not know if the negation of that expression is True or False.
+
+                NOT
+                -------------
+                True    | False
+                Unknown | Unknown
+                False   | True
+
+            - AND operator
+                -  to Return True both of the operators must have a True value. So if one of the operands is True and the other is unknown, then I cannot know if the ANDed expression is true- so the value is unknown. But if one of the operands is False, then the ANDed expression cannot be true and we know its value is False.
+
+
+                AND       True    Unknown    False
+                ---------------------------------
+                True    | True    Unknown    False
+
+                Unknown | Unknown Unknown    False
+
+                False   | False   False      False
+
+
+            - OR operator
+                - to Return True at least one of the operators must have a True value. So if one of the operands is True and the other is unknown, then the ORed expression is TRUE. If one of the operands is False and the other is unknown then I cannot know the value of the Ored expression and its value is Unknown.
+
+
+                OR          True    Unknown     False
+                --------------------------------------
+                True      | True    True        True
+
+                Unknown   | True    Unknown     Unknown
+
+                False     | True    Unknown     False
+
+
+
+M:
+
+N:
+    NUMBER(6,0)
+        - Is an integer number with ip tp 6 digits
+
+    NULL 
+        - KIND:
+            filter, DATA value
+
+        - Testing for NULL
+            ex:
+                SELECT order_id
+                FROM oe_orderHeaders
+                WHERE shipping_mode_id IS NULL 
+
+            - Note:
+                If you try testing for '= NULL' you will get a syntax error
+
+    NOT NULL
+        - KIND:
+            filter
+
+        - Testing for NULL
+            ex:
+                SELECT order_id
+                FROM oe_orderHeaders
+                WHERE shipping_mode_id IS NOT NULL 
+
+            - Note:
+                If you try testing for '!= NULL' you will get a syntax error
+
+
+O:
+    ORDER BY
+
+P:
+    Predicates
+        - KIND:
+            expression, subcomponent of a WHERE clause
+
+        - They have Truth value that can be TRUE, FAlSE or Unknown
+        - Rule - if evaluates to TRUE - then return result
+               - else:
+                    don't return anything
+        - How to use:
+            WHERE z_name IN('Sam', 'Dewey', 'Trixie')
+                - NOTE:
+                    predicate is the part fowwing WHERE clause
+                    z_name.........'Trixie')
+
+        - Note:
+            This query is executed by looking at each row in the zoo table,
+            one row at a time, evaluating that expression.
+            
+            The query is LOGICALLY executed as using the FROM clause to get the data from the zoo_2016 table into a temporary storate area then evaluating the WHERE clause looking ar the first row
+
+            If that row evaluates to TRUE then the row is passed into the result set. (The oposit is the case if it evaluates to FALSE)
+
+            Then the process continues to the next row
+
+    PRIMARY KEY
+
+
+
+Q:
+    QUERY
+
+R:
+
+S:
+    SELECT
+
+    STATEMENT
+
+T:
+    TRUNC()
+        - Is a function
+
+
+
+U:
+
+    UNIQUE
+        -
+
+V:
+    Varchar()
+        - Values in varchar() are variable-length strings. The lenth can be specified as a value from 0-65,535. The effective maximum length of a varchar() is subject to the maximum ro size (65,535 bytes, which is shared among all columns) and the character set used.  
+        - It is reserved by Oracle to support distinction between NULL and empty string in the future, as ANSI standard prescribes.
+
+    VARCHAR2()
+        - Same as vachar() accept 
+            - it does not distinguish between a NULL and empty string and never will
+            - Icludes a maximum length
+
+            - Note: 
+                - If you rely on empty string and NULL being the same thing  you should use VARCHAR2()
+                -You can use the CHAR qualifier to give the maximum length in characters instead of bytes.
+                    ex: VARCHAR2(10 CHAR)
+                - Also, a character is technicaly a code point of the database character set
+
+W:
+    WHERE  & COMPOUND WHERE
+        - KIND:
+            clause
+
+        - Filters out which specific rows should be returned
+        - It contains a logical expression, which conatins a predicate, condition or test
+            ex:
+                SELECT col_expressions
+                FROM table_expression
+                WHERE predicate         
+                ORDER BY sort_keys;
+
+            - If that row evalulates to TRUE for a row in a TABLE, then that row is returned in the results of the query
+                else:
+                    no returns if FALSE or UNKNOWN
+
+        - COMPOUND WHERE
+            - uses logical operators
+                AND, OR, NOT
+
+            ex AND:
+                - Both conditions must be TRUE
+
+                WHERE salary > 60000
+                AND dept_id =30;
+
+                - NOTE:
+                    - can reduce rows further
+                        WHERE job_title NOT LIKE '%Sales%'
+                        AND min_salary > 40000
+
+                    - can use BETWEEN
+                        where salary between 20000 and 60000
+
+                    - can use > <
+                        WHERE salary > 20000
+                        AND salary < 60000
+
+                    - can stack mutiple ANDs
+                        WHERE dept_id = 35
+                        AND salary > 50000
+                        AND job_id in (8, 16)
+
+            ex OR:
+                - One or both conditions can be TRUE
+
+                WHERE dept_id = 30
+                OR dept_id = 20
+
+                WHERE dept_id = 30
+                OR salary > 70000
+
+                    - NOTE:
+                        - can stack ORs
+                            WHERE dept_id = 30
+                            OR salary > 70000
+                            OR job_id in (8, 16)
+
+                        - can check with IS NULL
+                            WHERE max_salary >= 20000 
+                            OR max_salary is null;
+
+            ex NOT:
+                - The NOT operator works on a single test and reverses
+                the value of that test
+
+                - NOT test is often used in combinaiton with AND or OR tests
+
+                WHERE NOT dept_id IN ( 30, 20)
+                ORDER BY "Employee"  
+
+    WILDCARDS CHARACTERS    
+        - Used when you want to do a partial string match - this is actually a pattern match
+
+        - Some DBMS will allow numeric values, such as in an ISBN code -  but this is not a good idea
+
+        - Are really deigned for string matching
+
+        - Dates are strings - so it works for date matching - but there are safer ways amd more effictive ways that rely on date formats
+            - ex:
+                Want to find 'portable mixer', '6-spead mixer', 'cement mixer'
+
+                looking for word with 'mixer' in it, LIKE '' or NOT LIKE '' operators
+
+        - SEE LIKE & NOT LIKE for more info
+
+
+X:
+
+Y:
+
+Z:

@@ -28,9 +28,6 @@ B:
 
 
 C:
-    Char():
-        - Fixed length - This means that char() field always takes the same amount of space regardless of what you store
-
     Clauses:
         - Clause is - a subcomponent of a statement
 
@@ -76,6 +73,12 @@ C:
         - Multiple users handling/accessing data from a DB at the same time
         - DBMS handles multiple entries at the same time, but how thr developer writes code can
         affect the situation
+
+    CGI:
+        - Commin Gateway Interface script
+        - Used for running basic website scripts
+        - CGI files text-based files which contain coding in Perl or C# programming languages
+        - Usually stored in a "dgi-bin" within a website direcroty on a web server
 
 
 D:
@@ -174,6 +177,17 @@ D:
                     ex aproach to DATA INTEGRITY: 
                         - reject the value another is to store only first 15 characters of that value
 
+    Direction Comparisons:
+        - list of operators:
+            =     , equal
+            !=    , not equal
+            >     , greater than
+            >=    , greater than or equal to
+            <     , less than
+            <=    , less thank or equal to 
+
+
+
 E:
     EMBEDED SQL - Refers to SQL statements might be included inside of other units of code
 
@@ -242,10 +256,21 @@ L:
     Lossless - Recovery:
 
 
+    Logical Expression:
+        - Can be found in a CLAUSE and contains a predicate, condition or test
+
+        ex:
+            SELECT col_expressions
+            FROM table_expression
+            WHERE predicate
+            ORDER BY sort_keys;
+
+
 
 
 P:
-    Persistent Storage:
+    Persistent Storage, aka PSM(Persistent Stored Modules):
+        -   Is an ISO standard mainly defining an extension of SQL with a procedural language for use in stored procedures
 
     Physical Data Independence:
         - This means that a DBMS does not concern itself with the physical storage type (ex: hard drive, ect) or the location ( this is the realm of the DBA (database administator)) or
@@ -259,6 +284,11 @@ P:
             -NOTE:
                 - Developers often have to know somthing about the storage of data to write the
                 most effivent questies and to decide on the proper data types to use
+
+    Pig's Ear:
+        - Is an entry in a table that has a relationship with it self.
+            - ex:
+                - We store an employee'name. Ab employee has a single job title an is assigned to a single dept. An employee may have a manager who is also an employee. This results in a relationsho from the employees table bacm to itself
 
     Primary Key:
         - An atribute or collection of atributes that uniquely identify a particular instance in
@@ -315,6 +345,11 @@ R:
         - THis means that we split data into several tables for storage efficiency purposes
         and create links between these tables in order to connect all relitive DATA for an
         "enrtry".
+
+    Registering:
+        - is when a data entered into a table and its related/client tables
+
+
 
     RDMS - Relational Database Management System:
         - Is a collection of prorams that handle the physical files that make up the DATABASE. 
@@ -383,9 +418,6 @@ T:
                 - Might be a - Virtual Table
 
 V:
-    Varchar():
-        - Values in varchar() are variable-length strings. The lenth can be specified as a value from 0-65,535. The effective maximum length of a varchar() is subject to the maximum ro size (65,535 bytes, which is shared among all columns) and the character set used.  
-
     Virtual Table:
         - Refers to an IN- MEMORY data structure that appears to hold the data
 
